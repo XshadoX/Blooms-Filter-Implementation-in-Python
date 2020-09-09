@@ -9,16 +9,15 @@ print("Size of bit array:{}".format(bloomf.size))
 print("False positive Probability:{}".format(bloomf.fp_prob)) 
 print("Number of hash functions:{}".format(bloomf.hash_count)) 
   
-# words to be added 
-word_present = ['abound','abounds','abundance','abundant','accessable', 
+ 
+word_present = ['abound','abounds','abundance','abundant','accessible', 
                 'bloom','blossom','bolster','bonny','bonus','bonuses', 
                 'coherent','cohesive','colorful','comely','comfort', 
                 'gems','generosity','generous','generously','genial'] 
   
-# word not added 
 word_absent = ['bluff','cheater','hate','war','humanity', 
                'racism','hurt','nuke','gloomy','facebook', 
-               'geeksforgeeks','twitter'] 
+               'twitter','Analytics','bloom'] 
   
 for item in word_present: 
     bloomf.add(item) 
@@ -31,8 +30,8 @@ shuffle(test_words)
 for word in test_words: 
     if bloomf.check(word): 
         if word in word_absent: 
-            print("'{}' is a false positive!".format(word)) 
+            print("'{}' is not in the bloom filter, but a false positive!\n".format(word)) 
         else: 
-            print("'{}' is probably present!".format(word)) 
+            print("'{}' is probably present in the bloom filter!\n".format(word)) 
     else: 
-        print("'{}' is definitely not present!".format(word)) 
+        print("'{}' is definitely not present in the bloom filter!\n".format(word)) 
